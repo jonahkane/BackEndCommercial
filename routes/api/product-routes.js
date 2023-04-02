@@ -34,20 +34,7 @@ router.get('/:id', async (req, res) => {
 }
 });
 // CREATE new product
-router.post('/', async (req, res) => {
-  try {
-    const productData = await Product.create({
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4],
-    });
-  res.status(200).json(productData);
-}catch (err) {
-  res.status(500).json(err);
-}
-
-// need to re write this entire section of code ---------------------------------------
+router.post('/', (req, res) => {
 Product.create(req.body)
 .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -60,6 +47,7 @@ Product.create(req.body)
         });
         return ProductTag.bulkCreate(productTagIdArr);
       }
+      // if no product tags, just respond
       res.status(200).json(product);
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
@@ -70,30 +58,13 @@ Product.create(req.body)
 });
 
 
-router.put('/:id', async (req, res) => {
-  try { 
-    const productData = await Product.update(req.body, {
+router.put('/:id', (req, res) => {
+  
+  Product.update(req.body, {
       where: {
         id: req.params.id,
       },
-  });
-  if (!productData[0]) {
-    res.status(404).json({ message: 'No product with this id!' });
-    return;
-  }
-  res.status(200).json(productData);
-} catch (err) {
-  res.status(500).json(err);
-}
-});
-
-router.put('/:id', async (req, res) => {
-  try {
-    const productData = Product.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    })
+  })
     .then((product) => {
       // find all associated tags from ProductTag
       return ProductTag.findAll({ where: { product_id: req.params.id } });
@@ -128,7 +99,7 @@ router.put('/:id', async (req, res) => {
     });
   });
   
-  // down to here -------------------------------------------------------------------------------------------------
+
 router.delete('/:id', async (req, res) => {
   try {
     const productData = await Product.destroy({
