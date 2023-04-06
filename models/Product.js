@@ -1,4 +1,4 @@
-// import important parts of sequelize library
+//created model for product with information provided in assignment
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 

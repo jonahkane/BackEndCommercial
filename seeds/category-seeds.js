@@ -1,3 +1,4 @@
+//creating seed data for category
 const { Category } = require('../models');
 
 const categoryData = [

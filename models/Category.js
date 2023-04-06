@@ -1,3 +1,4 @@
+//created model for category with information provided in assignment
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');

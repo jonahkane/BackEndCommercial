@@ -1,3 +1,4 @@
+//created model for product tags with information provided in assignment
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');

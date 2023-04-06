@@ -1,3 +1,4 @@
+//creating seed data for product
 const { Product } = require('../models');
 
 const productData = [

@@ -25,8 +25,8 @@ To use this project, install the necessary dependencies and then launch the app 
 
 ---
 
-Link to Videos:
-https://drive.google.com/file/d/1jIjehRXpq3DLnLkUDInzCrFQSZr9Lt1h/view
+Link to Demo Video:
+https://drive.google.com/file/d/1teCWjblcyBx02qAPROdKnhSVhzcB0zhy/view
 
 ---
 

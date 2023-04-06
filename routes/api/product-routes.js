@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 });
 
-// GET one product
+// GET one product by ID
 router.get('/:id', async (req, res) => {
   try {
   const productData = await Product.findByPk(req.params.id, {
@@ -57,7 +57,7 @@ Product.create(req.body)
     });
 });
 
-
+//update product by id
 router.put('/:id', (req, res) => {
   
   Product.update(req.body, {
@@ -92,14 +92,14 @@ router.put('/:id', (req, res) => {
         ProductTag.bulkCreate(newProductTags),
       ]);
     })
-    .then((updatedProductTags) => res.json({ message: "product and associated tags updated" }))
+    .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
       // console.log(err);
       res.status(400).json(err);
     });
   });
   
-
+//delete product by ID
 router.delete('/:id', async (req, res) => {
   try {
     const productData = await Product.destroy({
